@@ -18,8 +18,8 @@ const Home: React.FC = () => {
           <div>SignIn Google</div>
         </div>
       </div>
-      <div className="bg-gray-100 h-1/3">
-        <div className="flex flex-row relative bottom-32 justify-around">
+      <div className="bg-gray-100 h-auto">
+        <div className="flex flex-col md:flex-row relative bottom-32 md:justify-around items-center">
           {cardsInfos.map((cardInfo) => {
             const { description, id, imgPath, title } = cardInfo
             return (
