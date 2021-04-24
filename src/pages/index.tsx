@@ -74,7 +74,7 @@ const Home: React.FC = () => {
           </div>
         </div>
         <div
-          className="w-full h-10 bg-blue-600 text-center cursor-pointer hover:bg-blue-800"
+          className="flex justify-center items-center w-full h-10 bg-gradient-to-r from-green-400 to-blue-500 text-center cursor-pointer opacity-75 hover:opacity-100"
           onClick={loadComments}
         >
           <p className="text-lg text-white">
