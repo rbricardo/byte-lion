@@ -1,9 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
-import Card from '../components/footer/Card'
+import { getComments } from '../services/comments'
 import { cardsInfos } from '../helpers/mocks/cardsInfos'
+import CommentCard from '../components/Cards/CommentCard'
+import MainCard from '../components/Cards/MainCard'
 
 const Home: React.FC = () => {
+  const [page, setPage] = useState(1)
+  const [comments, setComments] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  async function loadComments() {
+    setIsLoading(true)
+    try {
+      const { data } = await getComments(page, 3)
+      const newComments = comments.concat(data)
+      setComments(newComments)
+      setPage(page + 1)
+      setIsLoading(false)
+    } catch (error) {
+      alert('Ops, somthing wrong happened')
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    loadComments()
+  }, [])
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>
+  // }
+
   return (
     <div className="container mx-auto" style={{ height: 900 }}>
       <Head>
@@ -24,7 +52,7 @@ const Home: React.FC = () => {
             const { description, id, imgPath, title } = cardInfo
             return (
               <div key={id}>
-                <Card
+                <MainCard
                   imgPath={imgPath}
                   title={title}
                   description={description}
@@ -32,6 +60,26 @@ const Home: React.FC = () => {
               </div>
             )
           })}
+        </div>
+        <div className="flex justify-center pb-14">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {comments?.map((comment) => {
+              const { body, email, name, id } = comment
+              return (
+                <div key={id}>
+                  <CommentCard body={body} email={email} name={name} />
+                </div>
+              )
+            })}
+          </div>
+        </div>
+        <div
+          className="w-full h-10 bg-blue-600 text-center cursor-pointer hover:bg-blue-800"
+          onClick={loadComments}
+        >
+          <p className="text-lg text-white">
+            {isLoading ? 'Loading...' : 'Load more comments'}
+          </p>
         </div>
       </div>
     </div>

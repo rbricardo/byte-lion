@@ -6,7 +6,7 @@ interface Props {
   title: string
 }
 
-const Card: React.FC<Props> = ({ description, imgPath, title }) => {
+const MainCard: React.FC<Props> = ({ description, imgPath, title }) => {
   return (
     <div className="flex flex-col items-center justify-center h-80 w-64 m-4 md:m-0 shadow-lg bg-white">
       <div className="w-10">
@@ -22,4 +22,4 @@ const Card: React.FC<Props> = ({ description, imgPath, title }) => {
   )
 }
 
-export default Card
+export default MainCard
