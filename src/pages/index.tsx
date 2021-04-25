@@ -37,6 +37,7 @@ const Home: React.FC = () => {
     <div className="container mx-auto" style={{ height: 900 }}>
       <Head>
         <title>Byte Lion</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="h-2/3" style={{ backgroundColor: '#989494' }}>
         <div className="flex flex-row justify-around items-center bg-white py-4">
