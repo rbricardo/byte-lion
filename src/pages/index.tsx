@@ -14,7 +14,7 @@ const Home: React.FC = () => {
   async function loadComments() {
     setIsLoading(true)
     try {
-      const { data } = await getComments(page, 3)
+      const { data } = await getComments(page, 2)
       const newComments = comments.concat(data)
       setComments(newComments)
       setPage(page + 1)
@@ -81,7 +81,7 @@ const Home: React.FC = () => {
           })}
         </div>
         <div className="flex justify-center pb-14">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {comments?.map((comment) => {
               const { body, email, name, id } = comment
               return (
