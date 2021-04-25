@@ -3,8 +3,8 @@ import Head from 'next/head'
 import { GoogleLogin } from 'react-google-login'
 import { getComments } from '../services/comments'
 import { cardsInfos } from '../helpers/mocks/cardsInfos'
-import CommentCard from '../components/Cards/CommentCard'
-import MainCard from '../components/Cards/MainCard'
+import CommentCard from '../components/CommentCard'
+import MainCard from '../components/MainCard'
 
 const Home: React.FC = () => {
   const [page, setPage] = useState(1)
