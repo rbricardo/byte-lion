@@ -10,28 +10,40 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+#   build:
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 15.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+#     strategy:
+#       matrix:
+#         node-version: [12.x, 14.x, 15.x]
+#         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm run export
-#     - run: npm test
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: Use Node.js ${{ matrix.node-version }}
+#       uses: actions/setup-node@v2
+#       with:
+#         node-version: ${{ matrix.node-version }}
+#     - run: npm ci
+#     - run: npm run build --if-present
+#     - run: npm run export
+# #     - run: npm test
 
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.1
-      with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: out # The folder the action should deploy.
+#     - name: Deploy 🚀
+#       uses: JamesIves/github-pages-deploy-action@4.1.1
+#       with:
+#         branch: gh-pages # The branch the action should deploy to.
+#         folder: out # The folder the action should deploy.
+  deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: amondnet/vercel-action@v20
+          with:
+            vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
+            github-token: ${{ secrets.GITHUB_TOKEN }} #Optional
+            vercel-args: '--prod' #Optional
+            vercel-org-id: ${{ secrets.ORG_ID}}  #Required
+            vercel-project-id: ${{ secrets.PROJECT_ID}} #Required
+            working-directory: ./sub-directory
