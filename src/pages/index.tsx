@@ -37,11 +37,10 @@ const Home: React.FC = () => {
     <div className="container mx-auto" style={{ height: 900 }}>
       <Head>
         <title>Byte Lion</title>
-        {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      <div className="bg-gray-400 h-2/3">
+      <div className="h-2/3" style={{ backgroundColor: '#989494' }}>
         <div className="flex flex-row justify-around items-center bg-white py-4">
-          <div className="w-60">
+          <div className="w-20 md:w-60">
             <img src="/images/bytelion-logo.png" />
           </div>
           <div>
@@ -53,6 +52,16 @@ const Home: React.FC = () => {
               cookiePolicy={'single_host_origin'}
             />
           </div>
+        </div>
+        <div className="flex flex-col justify-center items-center h-2/4">
+          <p className="text-white text-6xl md:text-8xl">Hi user</p>
+          <p className="text-white md:text-base text-sm text-center mt-6">
+            Color really isn{"'"}t that difficult to get right, if you know
+            where to start.
+          </p>
+          <p className="text-white md:text-base text-sm text-center">
+            Learn by doing and you will be a master in no time
+          </p>
         </div>
       </div>
       <div className="bg-gray-100 h-auto">

@@ -18,8 +18,8 @@ const CommentCard: React.FC<Props> = ({ body, email, name }) => {
           <p className="text-xs text-white">{name}</p>
         </div>
       </div>
-      <div className="px-10 pt-2">
-        <p className="text-sm font-medium">{bodyText}</p>
+      <div className="px-10 pt-2 h-1/2">
+        <p className="text-xs font-medium">{bodyText}</p>
       </div>
     </div>
   )
