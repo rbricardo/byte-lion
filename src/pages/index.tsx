@@ -29,9 +29,6 @@ const Home: React.FC = () => {
     loadComments()
   }, [])
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>
-  // }
   const responseGoogle = (response) => {
     console.log(response)
   }
