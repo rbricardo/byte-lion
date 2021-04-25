@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
+import { GoogleLogin } from 'react-google-login'
 import { getComments } from '../services/comments'
 import { cardsInfos } from '../helpers/mocks/cardsInfos'
 import CommentCard from '../components/Cards/CommentCard'
@@ -31,6 +32,9 @@ const Home: React.FC = () => {
   // if (isLoading) {
   //   return <div>Loading...</div>
   // }
+  const responseGoogle = (response) => {
+    console.log(response)
+  }
 
   return (
     <div className="container mx-auto" style={{ height: 900 }}>
@@ -43,7 +47,15 @@ const Home: React.FC = () => {
           <div className="w-60">
             <img src="/images/bytelion-logo.png" />
           </div>
-          <div>SignIn Google</div>
+          <div>
+            <GoogleLogin
+              clientId="700739214835-5bkglg53lsc3bhmvu3tr5mod8mbjbsr5.apps.googleusercontent.com"
+              buttonText="Sign in with Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+            />
+          </div>
         </div>
       </div>
       <div className="bg-gray-100 h-auto">
