@@ -35,8 +35,10 @@
 #       with:
 #         branch: gh-pages # The branch the action should deploy to.
 #         folder: out # The folder the action should deploy.
-name: deploy website
-on: [pull_request]
+push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 jobs:
   deploy:
     runs-on: ubuntu-latest
