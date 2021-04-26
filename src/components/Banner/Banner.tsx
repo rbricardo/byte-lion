@@ -1,9 +1,17 @@
 import React from 'react'
-import { RootStateOrAny, useSelector } from 'react-redux'
 
-const Banner: React.FC = () => {
-  const userData = useSelector((state: RootStateOrAny) => state.user.userData)
+interface Props {
+  userData?: {
+    googleId: string
+    imageUrl: string
+    email: string
+    name: string
+    givenName: string
+    familyName: string
+  } | null
+}
 
+const Banner: React.FC<Props> = ({ userData }) => {
   return (
     <div className="flex flex-col justify-center items-center h-2/4">
       <p className="text-white text-6xl md:text-8xl">

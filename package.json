@@ -6,7 +6,8 @@
     "dev": "next dev -p 4444",
     "build": "next build",
     "export": "next export",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest --watch"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -20,12 +21,17 @@
     "redux-devtools-extension": "^2.13.9"
   },
   "devDependencies": {
+    "@babel/core": "^7.13.16",
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.6",
+    "@types/jest": "^26.0.23",
     "@types/node": "^14.14.41",
     "@types/react": "^17.0.3",
     "@types/react-redux": "^7.1.16",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "autoprefixer": "^10.2.5",
+    "babel-jest": "^26.6.3",
     "eslint": "^7.25.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
@@ -34,6 +40,7 @@
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-react": "^7.23.2",
     "git-commit-msg-linter": "^3.1.0",
+    "jest": "^26.6.3",
     "postcss": "^8.2.12",
     "prettier": "^2.2.1",
     "tailwindcss": "^2.1.2",

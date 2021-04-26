@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 
-import { useDispatch } from 'react-redux'
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
 import { setUser } from '../store/reducers/user'
 
 import { getComments } from '../services/comments'
@@ -14,6 +14,8 @@ import Header from '../components/Header/Header'
 
 const Home: React.FC = () => {
   const dispatch = useDispatch()
+
+  const userData = useSelector((state: RootStateOrAny) => state.user.userData)
 
   const [page, setPage] = useState(1)
   const [comments, setComments] = useState([])
@@ -54,7 +56,7 @@ const Home: React.FC = () => {
       </Head>
       <div className="h-2/3" style={{ backgroundColor: '#989494' }}>
         <Header onLoginGoogle={onLoginGoogle} onLogoutGoogle={onLogoutGoogle} />
-        <Banner />
+        <Banner userData={userData} />
       </div>
       <div className="bg-gray-100 h-auto">
         <div className="flex flex-col md:flex-row relative bottom-32 md:justify-around items-center">
