@@ -11,7 +11,7 @@ import Header from '../components/Header/Header'
 const Home: React.FC = () => {
   const [page, setPage] = useState(1)
   const [comments, setComments] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   async function loadComments() {
     setIsLoading(true)
