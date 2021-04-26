@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
-import { GoogleLogin } from 'react-google-login'
 import { getComments } from '../services/comments'
 import { cardsInfos } from '../helpers/mocks/cardsInfos'
-import CommentCard from '../components/CommentCard'
-import MainCard from '../components/MainCard'
+import CommentCard from '../components/CommentCard/CommentCard'
+import MainCard from '../components/MainCard/MainCard'
+import Banner from '../components/Banner/Banner'
+import Button from '../components/Button/Button'
+import Header from '../components/Header/Header'
 
 const Home: React.FC = () => {
   const [page, setPage] = useState(1)
@@ -40,30 +42,8 @@ const Home: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="h-2/3" style={{ backgroundColor: '#989494' }}>
-        <div className="flex flex-row justify-around items-center bg-white py-4">
-          <div className="w-20 md:w-60">
-            <img src="/images/bytelion-logo.png" />
-          </div>
-          <div>
-            <GoogleLogin
-              clientId="700739214835-5bkglg53lsc3bhmvu3tr5mod8mbjbsr5.apps.googleusercontent.com"
-              buttonText="Sign in with Google"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={'single_host_origin'}
-            />
-          </div>
-        </div>
-        <div className="flex flex-col justify-center items-center h-2/4">
-          <p className="text-white text-6xl md:text-8xl">Hi user</p>
-          <p className="text-white md:text-base text-sm text-center mt-6">
-            Color really isn{"'"}t that difficult to get right, if you know
-            where to start.
-          </p>
-          <p className="text-white md:text-base text-sm text-center">
-            Learn by doing and you will be a master in no time
-          </p>
-        </div>
+        <Header responseGoogle={responseGoogle} />
+        <Banner />
       </div>
       <div className="bg-gray-100 h-auto">
         <div className="flex flex-col md:flex-row relative bottom-32 md:justify-around items-center">
@@ -92,14 +72,11 @@ const Home: React.FC = () => {
             })}
           </div>
         </div>
-        <div
-          className="flex justify-center items-center w-full h-10 bg-gradient-to-r from-green-400 to-blue-500 text-center cursor-pointer opacity-75 hover:opacity-100"
+        <Button
           onClick={loadComments}
-        >
-          <p className="text-lg text-white">
-            {isLoading ? 'Loading...' : 'Load more comments'}
-          </p>
-        </div>
+          isLoading={isLoading}
+          title="Load more comments"
+        />
       </div>
     </div>
   )
