@@ -1,18 +1,18 @@
-export const setUserId = (data) => ({
-  type: 'SET_USER_ID',
+export const setUser = (data) => ({
+  type: 'SET_USER',
   payload: data
 })
 
 const initialState = {
-  userId: null
+  userData: null
 }
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_USER_ID':
+    case 'SET_USER':
       return {
         ...state,
-        userId: action.payload
+        userData: action.payload
       }
     default:
       return state

@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
+
+import { useDispatch } from 'react-redux'
+import { setUser } from '../store/reducers/user'
+
 import { getComments } from '../services/comments'
 import { cardsInfos } from '../helpers/mocks/cardsInfos'
 import CommentCard from '../components/CommentCard/CommentCard'
@@ -9,6 +13,8 @@ import Button from '../components/Button/Button'
 import Header from '../components/Header/Header'
 
 const Home: React.FC = () => {
+  const dispatch = useDispatch()
+
   const [page, setPage] = useState(1)
   const [comments, setComments] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -31,8 +37,13 @@ const Home: React.FC = () => {
     loadComments()
   }, [])
 
-  const responseGoogle = (response) => {
+  const onLoginGoogle = (response) => {
     console.log(response)
+    dispatch(setUser(response.profileObj))
+  }
+
+  const onLogoutGoogle = () => {
+    dispatch(setUser(null))
   }
 
   return (
@@ -42,7 +53,7 @@ const Home: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="h-2/3" style={{ backgroundColor: '#989494' }}>
-        <Header responseGoogle={responseGoogle} />
+        <Header onLoginGoogle={onLoginGoogle} onLogoutGoogle={onLogoutGoogle} />
         <Banner />
       </div>
       <div className="bg-gray-100 h-auto">

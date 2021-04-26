@@ -1,24 +1,38 @@
 import React from 'react'
-import GoogleLogin from 'react-google-login'
+import { GoogleLogin, GoogleLogout } from 'react-google-login'
+import { RootStateOrAny, useSelector } from 'react-redux'
 
 interface Props {
-  responseGoogle: (response: any) => void
+  onLoginGoogle: (response: any) => void
+  onLogoutGoogle: () => void
 }
 
-const Header: React.FC<Props> = ({ responseGoogle }) => {
+const Header: React.FC<Props> = ({ onLoginGoogle, onLogoutGoogle }) => {
+  const userData = useSelector((state: RootStateOrAny) => state.user.userData)
+
   return (
     <div className="flex flex-row justify-around items-center bg-white py-4">
       <div className="w-20 md:w-60">
         <img src="/images/bytelion-logo.png" />
       </div>
       <div>
-        <GoogleLogin
-          clientId="700739214835-5bkglg53lsc3bhmvu3tr5mod8mbjbsr5.apps.googleusercontent.com"
-          buttonText="Sign in with Google"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          cookiePolicy={'single_host_origin'}
-        />
+        {!userData ? (
+          <GoogleLogin
+            clientId="790677542375-nrtgsqt1v9op8t1brt7v7mvcmv4rkcc6.apps.googleusercontent.com"
+            buttonText="Sign in with Google"
+            onSuccess={onLoginGoogle}
+            onFailure={onLoginGoogle}
+            cookiePolicy={'single_host_origin'}
+            isSignedIn
+          />
+        ) : (
+          <GoogleLogout
+            clientId="790677542375-nrtgsqt1v9op8t1brt7v7mvcmv4rkcc6.apps.googleusercontent.com"
+            buttonText="Logout"
+            onLogoutSuccess={onLogoutGoogle}
+            onFailure={() => console.log('failure')}
+          />
+        )}
       </div>
     </div>
   )
